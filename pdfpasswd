@@ -1,0 +1,9 @@
+#!/bin/bash
+# Author: Pablo Iranzo Gómez (Pablo.Iranzo@gmail.com)  https://iranzo.github.io
+# Description: Removes password on pdf file
+
+mkdir -p noenc enc
+FILE=$1
+PASS=$2
+qpdf --password="$2" --decrypt $1 noenc/$1
+[ "$?" == "0" ] && mv $1 enc/$1

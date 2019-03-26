@@ -1,0 +1,5 @@
+#!/bin/bash
+# Author: Pablo Iranzo Gómez (Pablo.Iranzo@gmail.com)  https://iranzo.github.io
+# Description: Splits one PDF into pages named out$PAGENUMBER.pdf
+
+for i in $(seq 1 $(qpdf --show-npages "$1")); do qpdf "$1" --pages "$1" $i -- out$i.pdf; done

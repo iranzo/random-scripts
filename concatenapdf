@@ -1,0 +1,5 @@
+#!/bin/bash
+# Author: Pablo Iranzo Gómez (Pablo.Iranzo@gmail.com)  https://iranzo.github.io
+# Description: Joins different pdf files into one named out.pdf with the pages ordeded based on the provided files
+
+gs -q -sPAPERSIZE=a4 -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=out.pdf "$@"
