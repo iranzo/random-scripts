@@ -5,5 +5,5 @@
 mkdir -p noenc enc
 FILE="$1"
 PASS="$2"
-qpdf --encrypt "$PASS"  "$PASS" 128 -- "$FILE" "enc/$FILE"
+qpdf --encrypt "$PASS" "$PASS" 128 -- "$FILE" "enc/$FILE"
 [ "$?" == "0" ] && mv "$FILE" "noenc/$FILE"

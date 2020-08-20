@@ -6,11 +6,12 @@
 for env in ~/.local/venvs/*; do
     echo "##### $env ######"
     if [ -f $env/bin/activate ]; then
-        . $env/bin/activate && pip install -U pip setuptools ; deactivate;
+        . $env/bin/activate && pip install -U pip setuptools
+        deactivate
     fi
 done
 
 # Then call regular pipsi upgrade
-for each in $(pipsi list|grep Package|grep -v "Packages and scripts"|tr ' :"' "\n"|grep -v Package); do
+for each in $(pipsi list | grep Package | grep -v "Packages and scripts" | tr ' :"' "\n" | grep -v Package); do
     pipsi upgrade $each
 done

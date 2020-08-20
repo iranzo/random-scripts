@@ -2,8 +2,7 @@
 # Author: Pablo Iranzo Gómez (Pablo.Iranzo@gmail.com)  https://iranzo.github.io
 # Description: Converts Nikon Raw files (NEF) while retaining EXIF headers
 
-
-FILENAME=$(echo "$1"|cut -d "." -f 1)
+FILENAME=$(echo "$1" | cut -d "." -f 1)
 echo "Procesando $1 ..."
-dcraw "$1" > /dev/null 2>&1 && convert -quality "75%" "$FILENAME.ppm" "$FILENAME.jpg" > /dev/null 2>&1 && rm -f "$FILENAME.ppm" >/dev/null 2>&1 && exiftool -TagsFromFile "$1" "$FILENAME.jpg" > /dev/null 2>&1 && rm -f "$FILENAME.jpg_original"
+dcraw "$1" >/dev/null 2>&1 && convert -quality "75%" "$FILENAME.ppm" "$FILENAME.jpg" >/dev/null 2>&1 && rm -f "$FILENAME.ppm" >/dev/null 2>&1 && exiftool -TagsFromFile "$1" "$FILENAME.jpg" >/dev/null 2>&1 && rm -f "$FILENAME.jpg_original"
 echo "...hecho"
