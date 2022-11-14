@@ -4,3 +4,4 @@
 
 renrot --name-template="%Y-%m-%d %H.%M.%S" "$@"
 rm *_orig
+rename -v JPG jpg *.JPG

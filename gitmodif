@@ -1,0 +1,2 @@
+#!/bin/bash
+LANG=C git status | grep modif | cut -d ":" -f 2-

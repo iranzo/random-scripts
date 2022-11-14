@@ -1,3 +1,4 @@
+---
 name: pre-commit
 
 on:
@@ -9,18 +10,18 @@ jobs:
   pre-commit:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2.4.0
-      with:
-        fetch-depth: 0
-    - uses: actions/setup-python@v2.3.2
-    - uses: actions/cache@v2.1.7
-      with:
-        path: |
-          ~/.cache/pre-commit
-        key: ${{ runner.os }}-precommit-${{ hashFiles('**/.pre-commit-config.yaml/*') }}
-        restore-keys: |
-          ${{ runner.os }}-precommit-
+      - uses: actions/checkout@v2.4.0
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v2.3.2
+      - uses: actions/cache@v2.1.7
+        with:
+          path: |
+            ~/.cache/pre-commit
+          key: ${{ runner.os }}-precommit-${{ hashFiles('**/.pre-commit-config.yaml/*') }}
+          restore-keys: |
+            ${{ runner.os }}-precommit-
 
-    - uses: pre-commit/action@v2.0.3
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: pre-commit/action@v2.0.3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
