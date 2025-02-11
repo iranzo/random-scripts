@@ -6,7 +6,7 @@ repos:
         stages:
           - commit-msg
     repo: https://github.com/commitizen-tools/commitizen
-    rev: v3.29.1
+    rev: v3.29.0
   - hooks:
       - id: check-useless-excludes
     repo: meta
@@ -24,11 +24,8 @@ repos:
     repo: https://github.com/pre-commit/mirrors-isort
     rev: v5.10.1
   - hooks:
-      - id: black
-    repo: https://github.com/python/black
-    rev: 24.10.0
-  - hooks:
       - id: check-added-large-files
+        args: [--maxkb=10000]
       - id: check-ast
       - id: check-case-conflict
       - id: check-executables-have-shebangs
@@ -55,31 +52,35 @@ repos:
       - id: check-byte-order-marker
       - id: check-docstring-first
     repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
-  - hooks:
-      - id: flake8
-    repo: https://gitlab.com/pycqa/flake8
-    rev: 3.9.2
-  - hooks:
-      - additional_dependencies:
-          - mvdan.cc/sh/v3/cmd/shfmt@v3.1.1
+    rev: v4.6.0
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.6.9
+    hooks:
+      # Run the linter.
+      - id: ruff
+        args:
+          - --fix
+      # Run the formatter.
+      - id: ruff-format
+
+  - repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.9.0-1
+    hooks:
+      # Choose one of:
+      - id: shfmt # native (requires/installs Go to build)
         args:
           - -w
           - -i
           - "4"
           - -s
-        entry: shfmt
-        id: shfmt
-        language: golang
-        minimum_pre_commit_version: 2.4.0
-        name: shfmt
         types:
           - shell
-    repo: local
+
   - hooks:
       - id: blacken-docs
     repo: https://github.com/asottile/blacken-docs
-    rev: 1.19.0
+    rev: 1.18.0
 
   # - repo: https://github.com/asottile/pyupgrade
   #   rev: v2.38.0
@@ -91,12 +92,11 @@ repos:
     rev: 0.2.3 # or other specific tag
     hooks:
       - id: yamlfmt
-        args: [--mapping, '2', --sequence, '4', --offset, '2', '--preserve-quotes']
+        args: [--mapping, "2", --sequence, "4", --offset, "2", "--preserve-quotes"]
 
-
-  # - repo: https://github.com/hcodes/yaspeller.git
-  #   rev: v8.0.1
-  #   hooks:
-  #     - id: yaspeller
-  #       types:
-  #         - markdown
+  - repo: https://github.com/hcodes/yaspeller.git
+    rev: v10.0.1
+    hooks:
+      - id: yaspeller
+        types:
+          - markdown
